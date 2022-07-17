@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useRouter } from 'next/router'
+import Link from 'next/link';
 
 export async function getStaticProps() {
 
@@ -25,12 +26,16 @@ export async function getStaticProps() {
         props: {
             posts
         },
+        revalidate: 60
     }
 }
 
 export default function Search({ posts }) {
-
     let router = useRouter()
+
+    function revalidate() {
+        fetch('./api/revalidate')
+    }
 
     return <div>
         <table border={1}>
@@ -54,6 +59,7 @@ export default function Search({ posts }) {
                                     <button onClick={() => {
                                         router.push(`/posts/${id}`)
                                     }}>Detail</button>
+                                    {/* <Link href={`/posts/${id}`}>Detail</Link> */}
                                 </td>
                             </tr>
                         )
@@ -61,5 +67,7 @@ export default function Search({ posts }) {
                 }
             </tbody>
         </table>
+
+        <button onClick={() => { revalidate() }}>Revalidate</button>
     </div>
 }
