@@ -33,8 +33,6 @@ export default function Search({ posts }) {
     let router = useRouter()
 
     return <div>
-        <button onClick={handleNext}>Back</button>
-        <button>Next</button>
         <table border={1}>
             <thead>
                 <tr>
