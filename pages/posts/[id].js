@@ -1,4 +1,5 @@
 import axios from "axios";
+import Header from "../../components/header";
 import { getId } from "../../posts/get-id";
 
 export async function getStaticPaths() {
@@ -28,6 +29,7 @@ export async function getStaticProps({ params }) {
 export default function Detail({ posts }) {
     return (
         <div>
+            <Header />
             <h2>Title: {posts.title}</h2>
             <p>Description: {posts.description}</p>
             <p>Image:</p>
